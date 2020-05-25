@@ -18,61 +18,38 @@ Dans l'exemple de diagramme, lorsque vous commencez à partir de A, vous vous re
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fscanf(STDIN, "%d %d", $W, $H);
-//echo("W : $W\n");
-//echo("H : $H\n");
 $line = array();
 for ($i = 0; $i < $H; $i++) {
     $line[$i] = stream_get_line(STDIN, 1024 + 1, "\n");
-    //echo("$line[$i]\n");
 }
 
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-
-//echo("-------\n");
 for ($i = 0; $i < $W; $i = $i+3) {
     $k = $i;
     for ($j = 0; $j < $H; $j++) {
-        //echo("*** $k *** $j ***\n");
         $l = $k;
         $ligne = $line[$j];
-        //echo("ligne : $ligne\n");
 
         if ($j == 0) {
             $deb = $ligne[$k];
-            //echo("deb : $deb\n");
         }
 
         if (($j != 0) && ($j != $H-1)) {
-            //$mil = $ligne[$k];
-            //echo("mil : $mil\n");
-
             if ($k == 0 && $ligne[$k+1] == '-') {
                 $l = $l + 3;
-                //echo("l : $l\n");
             }
 
             if ($k == $w-1 && $ligne[$k-1] == '-') {
                 $l = $l - 3;
-                //echo("l : $l\n");
             }
 
             if ($k != 0 && $k != $w-1) {
-                //echo("k : $k\n");
                 if ($ligne[$k+1] == '-') {
                     $l = $l + 3;
-                    //echo("l : $l\n");
                 }
 
                 if ($ligne[$k-1] == '-') {
                     $l = $l - 3;
-                    //echo("l : $l\n");
                 }
             }
 
@@ -81,7 +58,6 @@ for ($i = 0; $i < $W; $i = $i+3) {
 
         if ($j == $H-1) {
             $fin = $ligne[$k];
-            //echo("fin : $fin\n");
             echo("$deb$fin\n");
         }
     }

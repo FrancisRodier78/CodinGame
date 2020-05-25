@@ -36,20 +36,12 @@ Contraintes
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fscanf(STDIN, "%d", $L);
 fscanf(STDIN, "%d", $H);
 $T = stream_get_line(STDIN, 256 + 1, "\n");
 for ($i = 0; $i < $H; $i++) {
     $ROW[$i] = stream_get_line(STDIN, 1024 + 1, "\n");
 }
-
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
 
 $tabAlp = ['a' => 0, 'b' => 1, 'c' => 2, 'd' => 3, 'e' => 4,
             'f' => 5, 'g' => 6, 'h' => 7, 'i' => 8, 'j' => 9,

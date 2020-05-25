@@ -36,16 +36,7 @@ Ligne 1: le nombre de carrés dans les sous-rectangles créés par les lignes aj
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fscanf(STDIN, "%d %d %d %d", $w, $h, $countX, $countY);
-//echo("w : $w\n");
-//echo("h : $h\n");
-//echo("x : $countX\n");
-//echo("y : $countY\n");
 
 $x = array();
 $inputs = explode(" ", fgets(STDIN));
@@ -73,59 +64,34 @@ for ($i = 0; $i < $countY; $i++) {
 $countY++;
 $y[$countY] = $h;
 $countY++;
-for ($i = 0; $i < $countY; $i++) {
-    //echo("y[$i] : $y[$i]\n");
-}
 
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-//$k = -1;
 $tabX = array();
 for ($i = 0; $i < $countX; $i++) {
-    //echo("-------\n");
-    //echo("x[$i] : $x[$i]\n");
     for ($j = $i; $j < $countX; $j++) {
-        //echo("x[$j] : $x[$j]\n");
         $val = $x[$i] - $x[$j];
         if ($val != 0) {
-            //$k++;
             $tabX[abs($val)]++;
             $val1 = abs($val);
-            //echo("tabX[$val1] : $tabX[$val1]\n");
         }
     }
 }
 
-//$k = -1;
 $tabY = array();
 for ($i = 0; $i < $countY; $i++) {
-    //echo("=======\n");
-    //echo("y[$i] : $y[$i]\n");
     for ($j = $i; $j < $countY; $j++) {
-        //echo("y[$j] : $y[$j]\n");
         $val = $y[$i] - $y[$j];
         if ($val != 0) {
-            //$k++;
             $tabY[abs($val)]++;
             $val1 = abs($val);
-            //echo("tabY[$val1] : $tabY[$val1]\n");
         }
     }
 }
-
-//$lenTabX = count($tabX);
-//echo("lenTabX : $lenTabX\n");
-//$lenTabY = count($tabY);
-//echo("lenTabY : $lenTabY\n");
 
 $val = 0;
 foreach ($tabX as $keyX => $valueX){
     foreach ($tabY as $keyY => $valueY){
-        //echo("keyX : keyY = $keyX : $keyY\n");
         if ($keyX == $keyY) {
-            //echo("valueX : valueY = $valueX : $valueY\n");
             $val += $valueX * $valueY;
-            //echo("val : $val\n");
         }
     }
 }

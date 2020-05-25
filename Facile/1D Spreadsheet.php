@@ -23,11 +23,6 @@ There won't be any cyclic references: a cell that reference itself or a cell tha
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fscanf(STDIN, "%d", $N);
 for ($i = 0; $i < $N; $i++) {
     fscanf(STDIN, "%s %s %s", $operation, $arg1, $arg2);
@@ -135,10 +130,6 @@ function dependencie($tab_oper, $tab_arg1, $tab_arg2, $j) {
 for ($i = 0; $i < $N; $i++) {
     $val = dependencie($tab_oper, $tab_arg1, $tab_arg2, $i);
     echo("$val\n");
-
-    // Write an answer using echo(). DON'T FORGET THE TRAILING \n
-    // To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-    //echo("1\n");
 }
 ?>
 

@@ -44,11 +44,6 @@ The winner of the tournament is player 2. Before winning, he faced player 6, the
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 function winner(&$N, &$Tab_NUMPLAYER, &$Tab_SIGNPLAYER, &$Tab_looser)  {
     $j = -1;
     for ($i = 0; $i < $N; $i = $i+2) {
@@ -187,23 +182,12 @@ for ($i = 0; $i < $N; $i++) {
     $Tab_SIGNPLAYER[$i] = $SIGNPLAYER;
 }
 
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-
-//echo("N : $N\n");
-for ($i = 0; $i < $N; $i++) {
-    //echo("Tab_NUMPLAYER : $Tab_NUMPLAYER[$i]\n");
-    //echo("Tab_SIGNPLAYER : $Tab_SIGNPLAYER[$i]\n");
-}
-
 $M = $N;
 $P = 0;
 while ($M <> 1) {
     $M = $M/2;
-    //echo("M : $M\n");
     $P++;
 }
-//echo("P : $P\n");
 
 $O = $N;
 $Tab_looser = array();
@@ -211,20 +195,10 @@ for ($i = 1; $i <= $O; $i++) {
     $Tab_looser[$i] = '';
 }
 
-//echo("M : $M\n");
 for ($j = 0; $j < $P; $j++) {
-    //echo("-------\n");
     winner($N, $Tab_NUMPLAYER, $Tab_SIGNPLAYER, $Tab_looser);
 
-    //echo("N : $N\n");
-    for ($i = 1; $i <= $O; $i++) {
-        //echo("Tab_NUMPLAYER : $Tab_NUMPLAYER[$i]\n");
-        //echo("Tab_SIGNPLAYER : $Tab_SIGNPLAYER[$i]\n");
-        //echo("Tab_looser[$i] : $Tab_looser[$i]\n");
-    }
 }
-
-//echo("*******\n");
 
 echo("$Tab_NUMPLAYER[0]\n");
 

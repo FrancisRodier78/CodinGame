@@ -30,27 +30,19 @@ Sortie
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fgets(STDIN);
 $list = explode(' ',fgets(STDIN));
 
-for ($temp = 0; $temp <= 5526; $temp++)
-{
+for ($temp = 0; $temp <= 5526; $temp++) {
     if (in_array($temp, $list)) exit ("$temp");
     if (in_array(-$temp, $list)) exit ("-$temp");
 }
 
 $temp = 5527;
 
-// $n: the number of temperatures to analyse
 fscanf(STDIN, "%d", $n);
 $inputs = explode(" ", fgets(STDIN));
-for ($i = 0; $i < $n; $i++)
-{
+for ($i = 0; $i < $n; $i++) {
     $t = intval($inputs[$i]); // a temperature expressed as an integer ranging from -273 to 5526
     
     if ($temp > abs($t)) {
@@ -70,8 +62,6 @@ for ($i = 0; $i < $n; $i++)
 if ($temp == 5527) {
     $result = 0;
 }
-// Write an action using echo(). DON'T FORGET THE TRAILING \n
-// To debug (equivalent to var_dump): error_log(var_export($var, true));
 
 echo("$result\n");
 ?>

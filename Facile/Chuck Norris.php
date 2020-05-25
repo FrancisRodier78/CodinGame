@@ -39,17 +39,7 @@ CC vaut donc : 0 0 00 0000 0 000 00 0000 0 00
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 $MESSAGE = stream_get_line(STDIN, 100 + 1, "\n");
-
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-
-// Affichage des codes ASCII du MESSAGE
     $longueur=strlen($MESSAGE);
     $chaine = '';
     for($i=0;$i<$longueur;$i++) {
@@ -59,8 +49,6 @@ $MESSAGE = stream_get_line(STDIN, 100 + 1, "\n");
         }
         $chaine = $chaine.$var;
     }
-
-    //echo("$chaine\n");
 
     $longueur=strlen($chaine);
     $answer = '';
@@ -87,9 +75,6 @@ $MESSAGE = stream_get_line(STDIN, 100 + 1, "\n");
             $prec = 0;
         }
     }
-
-
-
 
     echo("$answer\n");
 ?>

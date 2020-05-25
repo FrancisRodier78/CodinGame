@@ -19,20 +19,10 @@ Un problème simple pour expérimenter la plateforme CodinGame : votre programme
 
 <!-- Ma solution -->
 <?php
-/**
- * The while loop represents the game.
- * Each iteration represents a turn of the game
- * where you are given inputs (the heights of the mountains)
- * and where you have to print an output (the index of the mountain to fire on)
- * The inputs you are given are automatically updated according to your last actions.
- **/
-
-// game loop
 while (TRUE) {
     $max = 0;
     $imax = 0;
     for ($i = 0; $i < 8; $i++) {
-        // $mountainH represents the height of one mountain, from 9 to 0. Mountain heights are provided from left to right.
         fscanf(STDIN, "%d", $mountainH);
         
         if ($mountainH > $max) {

@@ -7,16 +7,9 @@ L’Hippodrome de Casablanca organise un nouveau type de course de chevaux : les
 
 <!-- Ma solution -->
 <?php
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 fscanf(STDIN, "%d", $N);
 for ($i = 0; $i < $N; $i++) {
     fscanf(STDIN, "%d", $pi);
-    //echo("cheval $i : $pi\n");
-    //array_push($array, $pi);
 
     $arr[] = $pi;
 }
@@ -32,9 +25,6 @@ for ($i = 1; $i < $N; $i++) {
     }
 }
 
-// Write an answer using echo(). DON'T FORGET THE TRAILING \n
-// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-
 echo("$answer\n");
 ?>
 
@@ -48,8 +38,8 @@ for ($i = 0; $i < $N; $i++){
 }
 
 sort($arr);
-//get all diffs
+
 for($i=1;$i<$N;$i++)$diff[]=abs($arr[$i]-$arr[$i-1]);
-//send response
+
 echo min($diff);
 ?>
