@@ -27,148 +27,66 @@ X X X X X
 -->
 
 <?php
+<?php
 /**
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
  **/
 
 fscanf(STDIN, "%d", $N);
+echo("$N\n");
+fscanf(STDIN, "%d", $L);
+echo("$L\n");
 for ($i = 0; $i < $N; $i++) {
-    fscanf(STDIN, "%s %s %s", $operation, $arg1, $arg2);
-    $tab_oper[$i] = $operation;
-    $tab_arg1[$i] = $arg1;
-    $tab_arg2[$i] = $arg2;
-
-        //echo("-deb------\n");
-        //echo("$tab_oper[$i]\n");
-        //echo("$tab_arg1[$i]\n");
-        //echo("$tab_arg2[$i]\n");
-        //echo("-fin------\n");
+    $LINE[$i] = trim(stream_get_line(STDIN, 500 + 1, "\n"));
+    $LINE2[$i] = implode(explode(" ", $LINE[$i]));
+    //echo("LINE[$i] : $LINE[$i]\n");
+    echo("LINE2[$i] : $LINE2[$i]\n");
 }
 
-function size($i) {
-    //echo("i : $i\n");
-    $j = strlen($i);
-    $res = 0;
-    for($k = 1; $k < $j; $k++) {
-        $res = $res * 10 + $i[$k];
-    }
-    //echo("res : $res\n");
-
-    return $res;
-}
-
-function dependencie($tab_oper, &$tab_arg1, &$tab_arg2, $j) {
-    if (($tab_arg1[$j][0] != "$") && ($tab_arg2[$j][0] != "$")) {
-        if($tab_oper[$j] == "VALUE") {
-            return $tab_arg1[$j];
-        }
-
-        if($tab_oper[$j] == "ADD") {
-            return $tab_arg1[$j] + $tab_arg2[$j];
-        }
-
-        if($tab_oper[$j] == "SUB") {
-            return $tab_arg1[$j] - $tab_arg2[$j];
-        }
-
-        if($tab_oper[$j] == "MULT") {
-            return $tab_arg1[$j] * $tab_arg2[$j];
-        }
-    } else {
-        if($tab_oper[$j] == "VALUE") {
-            $val = size($tab_arg1[$j]);
-            $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val); 
-            return $tab_arg1[$j];
-        }
-
-        if ($tab_oper[$j] == "ADD") {
-            if (($tab_arg1[$j][0] != "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-                //echo("tab_arg2[$j] : $tab_arg2[$j]\n");
-            } 
-            
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] != "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val); 
-                //echo("tab_arg1[$j] : $tab_arg1[$j]\n");
-            }
-
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            }
-
-            return $tab_arg1[$j]
-                    + $tab_arg2[$j];
-        }
-
-        if ($tab_oper[$j] == "SUB") {
-            if (($tab_arg1[$j][0] != "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            } 
-            
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] != "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            }
-
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val); 
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            }
-
-            return $tab_arg1[$j]
-                    - $tab_arg2[$j];
-        }
-
-        if ($tab_oper[$j] == "MULT") {
-            if (($tab_arg1[$j][0] != "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            } 
-            
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] != "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val); 
-            }
-
-            if (($tab_arg1[$j][0] == "$") && ($tab_arg2[$j][0] == "$")) {
-                $val = size($tab_arg1[$j]);
-                $tab_arg1[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val); 
-                $val = size($tab_arg2[$j]);
-                $tab_arg2[$j] = dependencie($tab_oper, $tab_arg1, $tab_arg2, $val);
-            }
-
-            return $tab_arg1[$j]
-                    * $tab_arg2[$j];
+for ($i = 0; $i < $N; $i++) {
+    for ($j = 0; $j < $N; $j++) {
+        if ($LINE2[$i][$j] != 'C') {
+            $LINE2[$i][$j] = 0;
         }
     }
 }
 
 for ($i = 0; $i < $N; $i++) {
-    $val = dependencie($tab_oper, $tab_arg1, $tab_arg2, $i);
-    echo("$val\n");
-
-    //echo("*******\n");
-
-    // Write an answer using echo(). DON'T FORGET THE TRAILING \n
-    // To debug: error_log(var_export($var, true)); (equivalent to var_dump)
-    //echo("1\n");
+    for ($j = 0; $j < $N; $j++) {
+        if ($LINE2[$i][$j] == 'C') {
+                //echo("-----\n");
+            echo("LINE2[$i][$j] : $LINE2[$i][$j]\n");
+            //$LINE2[$i][$j] = 1;
+            for ($Y = $i-$L; $Y < $L; $Y++) {
+                //echo("Y : $Y\n");
+                for ($X = $j-$L; $X < $L; $X++) {
+                    //echo("X : $X\n");
+                    if (($Y >= 0)  && ($X >= 0) 
+                    &&  ($Y <= $N) && ($X <= $N)) {
+                        echo("X, Y : $X, $Y\n");
+                        if ($LINE2[$Y][$X] == 0) {
+                            $LINE2[$Y][$X] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
-        //echo("-------\n");
-        //echo("$tab_oper[$i]\n");
-        //echo("$tab_arg1[$i]\n");
-        //echo("$tab_arg2[$i]\n");
-        //echo("-------\n");
-            //echo("ICI\n");
-            //echo("$valT\n");
+$result = 0;
+for ($i = 0; $i < $N; $i++) {
+    for ($j = 0; $j < $N; $j++) {
+        if ($LINE2[$i][$j] == 0) {
+            $result++;
+        }
+    }
+}
 
-?>
+for ($i = 0; $i < $N; $i++) {
+    print_r("LINE2[$i] : $LINE2[$i]\n");
+}
+
+echo("$result\n");
+?>?>
