@@ -27,27 +27,22 @@ X X X X X
 -->
 
 <?php
-<?php
 /**
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
  **/
 
 fscanf(STDIN, "%d", $N);
-echo("$N\n");
 fscanf(STDIN, "%d", $L);
-echo("$L\n");
 for ($i = 0; $i < $N; $i++) {
     $LINE[$i] = trim(stream_get_line(STDIN, 500 + 1, "\n"));
     $LINE2[$i] = implode(explode(" ", $LINE[$i]));
-    //echo("LINE[$i] : $LINE[$i]\n");
-    echo("LINE2[$i] : $LINE2[$i]\n");
 }
 
 for ($i = 0; $i < $N; $i++) {
     for ($j = 0; $j < $N; $j++) {
         if ($LINE2[$i][$j] != 'C') {
-            $LINE2[$i][$j] = 0;
+            $LINE2[$i][$j] = '0';
         }
     }
 }
@@ -55,18 +50,12 @@ for ($i = 0; $i < $N; $i++) {
 for ($i = 0; $i < $N; $i++) {
     for ($j = 0; $j < $N; $j++) {
         if ($LINE2[$i][$j] == 'C') {
-                //echo("-----\n");
-            echo("LINE2[$i][$j] : $LINE2[$i][$j]\n");
-            //$LINE2[$i][$j] = 1;
-            for ($Y = $i-$L; $Y < $L; $Y++) {
-                //echo("Y : $Y\n");
-                for ($X = $j-$L; $X < $L; $X++) {
-                    //echo("X : $X\n");
+            for ($Y = $i-$L+1; $Y <= $i+$L-1; $Y++) {
+                for ($X = $j-$L+1; $X <= $j+$L-1; $X++) {
                     if (($Y >= 0)  && ($X >= 0) 
                     &&  ($Y <= $N) && ($X <= $N)) {
-                        echo("X, Y : $X, $Y\n");
-                        if ($LINE2[$Y][$X] == 0) {
-                            $LINE2[$Y][$X] = 1;
+                        if ($LINE2[$Y][$X] == '0') {
+                            $LINE2[$Y][$X] = '1';
                         }
                     }
                 }
@@ -78,15 +67,11 @@ for ($i = 0; $i < $N; $i++) {
 $result = 0;
 for ($i = 0; $i < $N; $i++) {
     for ($j = 0; $j < $N; $j++) {
-        if ($LINE2[$i][$j] == 0) {
+        if ($LINE2[$i][$j] == '0') {
             $result++;
         }
     }
 }
 
-for ($i = 0; $i < $N; $i++) {
-    print_r("LINE2[$i] : $LINE2[$i]\n");
-}
-
 echo("$result\n");
-?>?>
+?>
