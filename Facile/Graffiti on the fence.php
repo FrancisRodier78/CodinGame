@@ -29,3 +29,114 @@ Les sections peintes peuvent ne pas être continues, réalisées sur différente
 Ayant les rapports en main, vous voulez savoir quelles sections de la clôture n'ont pas été peintes.
 -->
 
+<?php
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+fscanf(STDIN, "%d", $L);
+//echo("L : $L\n");
+fscanf(STDIN, "%d", $N);
+//echo("N : $N\n");
+$tab = [];
+for ($i = 0; $i < $N; $i++) {
+    fscanf(STDIN, "%d %d", $st, $ed);
+    //echo("st, ed : $st, $ed\n");
+    $tab += [$st => $ed];
+}
+
+// Write an answer using echo(). DON'T FORGET THE TRAILING \n
+// To debug: error_log(var_export($var, true)); (equivalent to var_dump)
+ksort($tab);
+foreach ($tab as $k => $v) {
+    //echo "tab[$k] => $v\n";
+}
+
+$key = 0;
+$val = 0;
+$result = [];
+$result1 = [];
+$result2 = [];
+$n = 1;
+foreach ($tab as $k => $v) {
+    $n++;
+    if ($key == 0 && $val == 0) {
+        $key = $k;
+        $val = $v;
+        //echo("0 0 : $key, $val \n");
+    } else {
+        if ($key == $k && $k == $v) {
+            //$result = [$key => $val];
+            echo("Rien 1\n");
+        } elseif ($key == $k && $key < $v && $v < $val) {
+            //$result = [$key => $val];
+            echo("Rien 2\n");
+        } elseif ($key == $k && $val == $v) {
+            //$result = [$key => $val];
+            echo("Rien 3\n");
+        } elseif ($key == $k && $val < $v) {
+            $val = $v;
+            $result = [$key => $val];
+        } elseif ($key < $k && $k < $val && $k == $v) {
+            //$result = [$key => $val];
+            echo("Rien 5\n");
+        } elseif ($key < $k && $k < $val && $v < $val) {
+            $result = [$key => $val];
+            //echo("Rien 6 : $key, $val\n");
+        } elseif ($key < $k && $k < $val && $v == $val) {
+            //$result = [$key => $val];
+            echo("Rien 7\n");
+        } elseif ($key < $k && $k < $val && $val < $v) {
+            $val = $v;
+            $result = [$key => $val];
+        } elseif ($k == $val && $k == $v) {
+            //$result = [$key => $val];
+            echo("Rien 9\n");
+        } elseif ($k == $val && $val < $v) {
+            $val = $v;
+            $result = [$key => $val];
+        } elseif ($k == $val+1 && $val < $v) {
+            $val = $v;
+            $result = [$key => $val];
+        } elseif ($val+1 < $k) {
+            //echo("nouveau tab : $key, $val\n");
+            $result1 += $result;
+            $result = [$key => $val];
+
+            $key = $k;
+            $val = $v;
+        }
+    }
+}
+$result1 += $result;
+
+$valprec = 0;
+$resul2 = [];
+foreach ($result1 as $k => $v) {
+    if ($k == 0 ) {
+        //$key = $v; 
+        $valprec = $v;
+    } else {
+        $key = $valprec; 
+        $val = $k;
+        $result2 += [$key => $val];
+
+        $valprec = $v;
+    }
+}
+
+if ($valprec != $L) {
+    $key = $valprec; 
+    $val = $L;
+    $result2 += [$key => $val];
+}
+
+foreach ($result2 as $k => $v) {
+    if ($k == 0 && $v == $L) {
+        echo("All painted\n");
+    } else {
+        echo("$k $v\n");
+    }
+}
+?>
