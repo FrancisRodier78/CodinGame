@@ -40,24 +40,30 @@ fscanf(STDIN, "%d", $L);
 fscanf(STDIN, "%d", $N);
 //echo("N : $N\n");
 $tab = [];
+$tabD = [];
 for ($i = 0; $i < $N; $i++) {
     fscanf(STDIN, "%d %d", $st, $ed);
     //echo("st, ed : $st, $ed\n");
     $tab += [$st => $ed];
+    $tabD[$i][0] = $st;
+    $tabD[$i][1] = $ed;
 }
 
 // Write an answer using echo(). DON'T FORGET THE TRAILING \n
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)
 ksort($tab);
 foreach ($tab as $k => $v) {
-    //echo "tab[$k] => $v\n";
+    for ($i = 0; $i < $N; $i++) {
+        if ($k == $tabD[$i][0]) {
+            $tab[$k] = $tabD[$i][1];
+        }
+    }
 }
 
 $key = 0;
 $val = 0;
 $result = [];
 $result1 = [];
-$result2 = [];
 $n = 1;
 foreach ($tab as $k => $v) {
     $n++;
@@ -96,31 +102,37 @@ foreach ($tab as $k => $v) {
         } elseif ($k == $val && $val < $v) {
             $val = $v;
             $result = [$key => $val];
-        } elseif ($k == $val+1 && $val < $v) {
-            $val = $v;
-            $result = [$key => $val];
-        } elseif ($val+1 < $k) {
+        } elseif ($val < $k) {
             //echo("nouveau tab : $key, $val\n");
-            $result1 += $result;
             $result = [$key => $val];
+            $result1 += $result;
 
             $key = $k;
             $val = $v;
         }
     }
 }
+//echo("Final key val : $key $val,  k v : $k $v\n");
+$result = [$key => $val];
 $result1 += $result;
 
 $valprec = 0;
-$resul2 = [];
+$tab2 = [];
 foreach ($result1 as $k => $v) {
-    if ($k == 0 ) {
-        //$key = $v; 
-        $valprec = $v;
+    if ($k == 0) {
+        if ($v != $L) {
+            $valprec = $v;
+            //echo("là");
+        } else {
+            $valprec = $v;
+            $val = $L;
+            $tab2 += [$key => $val];
+            //echo("ici");
+        }
     } else {
         $key = $valprec; 
         $val = $k;
-        $result2 += [$key => $val];
+        $tab2 += [$key => $val];
 
         $valprec = $v;
     }
@@ -129,10 +141,10 @@ foreach ($result1 as $k => $v) {
 if ($valprec != $L) {
     $key = $valprec; 
     $val = $L;
-    $result2 += [$key => $val];
+    $tab2 += [$key => $val];
 }
 
-foreach ($result2 as $k => $v) {
+foreach ($tab2 as $k => $v) {
     if ($k == 0 && $v == $L) {
         echo("All painted\n");
     } else {
