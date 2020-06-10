@@ -29,6 +29,7 @@ Les sections peintes peuvent ne pas être continues, réalisées sur différente
 Ayant les rapports en main, vous voulez savoir quelles sections de la clôture n'ont pas été peintes.
 -->
 
+<!-- Ma solution -->
 <?php
 /**
  * Auto-generated code below aims at helping you parse
@@ -36,14 +37,11 @@ Ayant les rapports en main, vous voulez savoir quelles sections de la clôture n
  **/
 
 fscanf(STDIN, "%d", $L);
-//echo("L : $L\n");
 fscanf(STDIN, "%d", $N);
-//echo("N : $N\n");
 $tab = [];
 $tabD = [];
 for ($i = 0; $i < $N; $i++) {
     fscanf(STDIN, "%d %d", $st, $ed);
-    //echo("st, ed : $st, $ed\n");
     $tab += [$st => $ed];
     $tabD[$i][0] = $st;
     $tabD[$i][1] = $ed;
@@ -70,40 +68,16 @@ foreach ($tab as $k => $v) {
     if ($key == 0 && $val == 0) {
         $key = $k;
         $val = $v;
-        //echo("0 0 : $key, $val \n");
     } else {
-        if ($key == $k && $k == $v) {
-            //$result = [$key => $val];
-            echo("Rien 1\n");
-        } elseif ($key == $k && $key < $v && $v < $val) {
-            //$result = [$key => $val];
-            echo("Rien 2\n");
-        } elseif ($key == $k && $val == $v) {
-            //$result = [$key => $val];
-            echo("Rien 3\n");
-        } elseif ($key == $k && $val < $v) {
-            $val = $v;
+        if ($key < $k && $k < $val && $v < $val) {
             $result = [$key => $val];
-        } elseif ($key < $k && $k < $val && $k == $v) {
-            //$result = [$key => $val];
-            echo("Rien 5\n");
-        } elseif ($key < $k && $k < $val && $v < $val) {
-            $result = [$key => $val];
-            //echo("Rien 6 : $key, $val\n");
-        } elseif ($key < $k && $k < $val && $v == $val) {
-            //$result = [$key => $val];
-            echo("Rien 7\n");
         } elseif ($key < $k && $k < $val && $val < $v) {
             $val = $v;
             $result = [$key => $val];
-        } elseif ($k == $val && $k == $v) {
-            //$result = [$key => $val];
-            echo("Rien 9\n");
         } elseif ($k == $val && $val < $v) {
             $val = $v;
             $result = [$key => $val];
         } elseif ($val < $k) {
-            //echo("nouveau tab : $key, $val\n");
             $result = [$key => $val];
             $result1 += $result;
 
@@ -112,7 +86,6 @@ foreach ($tab as $k => $v) {
         }
     }
 }
-//echo("Final key val : $key $val,  k v : $k $v\n");
 $result = [$key => $val];
 $result1 += $result;
 
@@ -122,12 +95,10 @@ foreach ($result1 as $k => $v) {
     if ($k == 0) {
         if ($v != $L) {
             $valprec = $v;
-            //echo("là");
         } else {
             $valprec = $v;
             $val = $L;
             $tab2 += [$key => $val];
-            //echo("ici");
         }
     } else {
         $key = $valprec; 
@@ -151,4 +122,60 @@ foreach ($tab2 as $k => $v) {
         echo("$k $v\n");
     }
 }
+?>
+
+<!-- Solution -->
+<?php
+
+fscanf(STDIN, "%d", $length);
+fscanf(STDIN, "%d", $count);
+
+$report = [];
+for ($i = 0; $i < $count; $i++) {
+    fscanf(STDIN, "%d %d", $st, $ed);
+    $report[$st] = $ed;
+}
+
+ksort($report);
+error_log(var_export($report, true));
+
+$painted = [];
+$lst = 0;
+$led = 0;
+foreach ($report as $st => $ed) {
+    if ($led < $st) {
+        $painted[$st] = $ed;
+        $lst = $st;
+        $led = $ed;
+    } else if ($led < $ed) {
+        $painted[$lst] = $ed;
+        $led = $ed;
+    }
+    //error_log(var_export($painted, true));
+}
+
+error_log(var_export($painted, true));
+
+$unpainted = [];
+$lst = 0;
+foreach ($painted as $st => $ed) {
+    if ($st != 0) {
+        $unpainted[$lst] = $st;
+    }
+    $lst = $ed;
+}
+if ($lst < $length) {
+    $unpainted[$lst] = $length;
+}
+
+error_log(var_export($unpainted, true));
+
+if (count($unpainted) > 0) {
+    foreach ($unpainted as $st => $ed) {
+        echo("$st $ed\n");
+    }
+} else {
+    echo("All painted\n");
+}
+
 ?>
