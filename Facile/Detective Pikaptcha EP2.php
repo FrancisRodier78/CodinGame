@@ -34,7 +34,6 @@ Vous pouvez soumettre autant de solutions que vous le souhaitez. Seule votre mei
 -->
 
 <?php
-<?php
 function plusun(&$Ligne, $Y, $X) {
     if ($Ligne[$Y][$X] == '0') {
         $Ligne[$Y][$X] = '1';
@@ -89,8 +88,10 @@ for ($i = 0; $i < $height; $i++) {
     // To debug: error_log(var_export($var, true)); (equivalent to var_dump)
 }
 
-error_log(var_export($posX, true));
-error_log(var_export($posY, true));
+        error_log(var_export($firstPosX, true));
+        error_log(var_export($posX, true));
+        error_log(var_export($firstPosY, true));
+        error_log(var_export($posY, true));
 
 do {
     if ($side == 'L') {
@@ -268,11 +269,193 @@ do {
             }
         }
     } else { // $side == 'R' 
+        if ($line[$posY][$posX] == '>') {
+            $face = 'face à la droite';
+            error_log(var_export($face, true));
 
+            if (isset($line[$posY+1][$posX]) && $line[$posY+1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY + 1;
+                $line[$posY][$posX] = 'v';
+
+                $mvt = 'mvt en bas';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX-1]) && $line[$posY][$posX-1] == '0' && $posX-1 >= 0) {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX - 1;
+                $line[$posY][$posX] = '<';
+
+                $mvt = 'mvt a gauche';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY-1][$posX]) && $line[$posY-1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY - 1;
+                $line[$posY][$posX] = '^';
+
+                $mvt = 'mvt en haut';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX+1]) && $line[$posY][$posX+1] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX + 1;
+                $line[$posY][$posX] = '>';
+
+                $mvt = 'mvt à droite';
+                error_log(var_export($mvt, true));
+            }
+
+            for ($i = 0; $i < $height; $i++) {
+                //error_log(var_export($saveLine[$i], true));
+            }
+
+            for ($i = 0; $i < $height; $i++) {
+                //error_log(var_export($line[$i], true));
+            }
+        } elseif ($line[$posY][$posX] == 'v') {
+            $face = 'face vers le bas';
+            error_log(var_export($face, true));
+            
+            if (isset($line[$posY][$posX-1]) && $line[$posY][$posX-1] == '0' && $posX-1 >= 0) {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX - 1;
+                $line[$posY][$posX] = '<';
+
+                $mvt = 'mvt a gauche';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY-1][$posX]) && $line[$posY-1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY - 1;
+                $line[$posY][$posX] = '^';
+
+                $mvt = 'mvt en haut';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX+1]) && $line[$posY][$posX+1] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX + 1;
+                $line[$posY][$posX] = '<';
+
+                $mvt = 'mvt à droite';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY+1][$posX]) && $line[$posY+1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY + 1;
+                $line[$posY][$posX] = '^';
+
+                $mvt = 'mvt en bas';
+                error_log(var_export($mvt, true));
+            }
+        } elseif ($line[$posY][$posX] == '<') {
+            $face = 'face à la gauche';
+            error_log(var_export($face, true));
+            
+            if (isset($line[$posY-1][$posX]) && $line[$posY-1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY - 1;
+                $line[$posY][$posX] = '^';
+
+                $mvt = 'mvt en haut';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX-1]) && $line[$posY][$posX-1] == '0' && $posX-1 >= 0) {
+                error_log(var_export($line[$posY][$posX-1], true));
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX - 1;
+                $line[$posY][$posX] = '<';
+
+                $mvt = 'mvt à gauche';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY+1][$posX]) && $line[$posY+1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY + 1;
+                $line[$posY][$posX] = 'v';
+
+                $mvt = 'mvt en bas';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX+1]) && $line[$posY][$posX+1] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX + 1;
+                $line[$posY][$posX] = '>';
+
+                $mvt = 'mvt a droite';
+                error_log(var_export($mvt, true));
+            }
+        } elseif ($line[$posY][$posX] == '^') {
+            $face = 'face vers le haut';
+            error_log(var_export($face, true));
+            
+            if (isset($line[$posY][$posX+1]) && $line[$posY][$posX+1] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX + 1;
+                $line[$posY][$posX] = '>';
+
+                $mvt = 'mvt à droite';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY-1][$posX]) && $line[$posY-1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY - 1;
+                $line[$posY][$posX] = '^';
+
+                $mvt = 'mvt en haut';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY][$posX-1]) && $line[$posY][$posX-1] == '0' && $posX-1 >= 0) {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posX = $posX - 1;
+                $line[$posY][$posX] = '<';
+
+                $mvt = 'mvt a gauche';
+                error_log(var_export($mvt, true));
+            } elseif (isset($line[$posY-1][$posX]) && $line[$posY-1][$posX] == '0') {
+                plusun($saveLine, $posY, $posX);
+
+                $line[$posY][$posX] = '0';
+                $posY = $posY - 1;
+                $line[$posY][$posX] = 'v';
+
+                $mvt = 'mvt en bas';
+                error_log(var_export($mvt, true));
+            }
+        }
+
+        for ($i = 0; $i < $height; $i++) {
+            error_log(var_export($line[$i], true));
+        }
+        error_log(var_export($firstPosX, true));
+        error_log(var_export($posX, true));
+        error_log(var_export($firstPosY, true));
+        error_log(var_export($posY, true));
     }
+
 } while (($firstPosX != $posX) || ($firstPosY != $posY));
 
 for ($i = 0; $i < $height; $i++) {
     echo("$saveLine[$i]\n");
 }
-?>?>
+?>
