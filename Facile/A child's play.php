@@ -40,10 +40,11 @@ for ($i = 0; $i < $h; $i++) {
 
 for ($Y = 0; $Y < $h; $Y++) {
     for ($X = 0; $X < $w; $X++) {
-        error_log(var_export($line[$Y][$X], true));
+        //error_log(var_export($line[$Y][$X], true));
         if ($line[$Y][$X] == 'O') {
             $debY = $Y;
             $debX = $X;
+            $line[$Y][$X] = '.';
             //error_log(var_export($Y, true));
             //error_log(var_export($X, true));
         }
@@ -56,25 +57,46 @@ $move = 'h';
 for ($i = 0; $i < $n; $i++) {
     if       (isset($line[$Y-1][$X]) && $line[$Y-1][$X] == '.' && $move == 'h') {
         //move vers le haut
+        $Y = $Y - 1;
     } elseif (isset($line[$Y-1][$X]) && $line[$Y-1][$X] == '#' && $move == 'h') {
         //move vers la droite
         $move = 'd';
+        $X = $X + 1;
     } elseif (isset($line[$Y][$X+1]) && $line[$Y][$X+1] == '.' && $move == 'd') {
         //move vers la droite
+        $X = $X + 1;
     } elseif (isset($line[$Y][$X+1]) && $line[$Y][$X+1] == '#' && $move == 'd') {
         //move vers le bas
         $move = 'b';
+        $Y = $Y + 1;
     } elseif (isset($line[$Y+1][$X]) && $line[$Y+1][$X] == '.' && $move == 'b') {
         //move vers le bas
+        $Y = $Y + 1;
     } elseif (isset($line[$Y+1][$X]) && $line[$Y+1][$X] == '#' && $move == 'b') {
         //move vers la gauche
         $move = 'g';
+        $X = $X - 1;
     } elseif (isset($line[$Y][$X-1]) && $line[$Y][$X-1] == '.' && $move == 'g') {
         //move vers la gauche
+        $X = $X - 1;
     } elseif (isset($line[$Y][$X-1]) && $line[$Y][$X-1] == '#' && $move == 'g') {
         //move vers le haut
         $move = 'h';
+        $Y = $Y - 1;
     }
-    
+
+    if ($debY == $Y && $debX == $X) {
+        // On st dans une boucle !
+        // en tenir compte pour écourter la boucle.
+        error_log(var_export("Boucle. $i", true));
+    }
+
+    //error_log(var_export($move, true));
+    //error_log(var_export($Y, true));
+    //error_log(var_export($X, true));
+    //echo("-------\n");
 }
+
+error_log(var_export($i, true));
+echo("X : $X, Y : $Y\n");
 ?>
