@@ -1,11 +1,18 @@
 <!--
 Objectif
-Depuis plusieurs années maintenant, dans les écoles primaires, on assiste à l'émergence d'un nouveau modèle éducatif, la programmation ludique. Les étudiants doivent programmer un petit robot à l'aide de blocs d'assemblage. Cela leur permet de se familiariser avec la programmation dès leur plus jeune âge tout en exerçant leur logique et leur perception de l'espace.
+Depuis plusieurs années maintenant, dans les écoles primaires, on assiste à l'émergence d'un nouveau modèle éducatif, la programmation ludique. 
+Les étudiants doivent programmer un petit robot à l'aide de blocs d'assemblage. 
+Cela leur permet de se familiariser avec la programmation dès leur plus jeune âge tout en exerçant leur logique et leur perception de l'espace.
 
-Vous êtes étudiant dans l'une de ces écoles. Le but de l'exercice est simple: votre professeur a conçu un circuit pour votre robot, vous a indiqué le nombre de mouvements que le robot peut effectuer et vous devez connaître la position finale du robot à la fin de l'exécution.
+Vous êtes étudiant dans l'une de ces écoles. 
+Le but de l'exercice est simple: 
+    votre professeur a conçu un circuit pour votre robot, 
+    vous a indiqué le nombre de mouvements que le robot peut effectuer 
+    et vous devez connaître la position finale du robot à la fin de l'exécution.
 
 Pour ce faire, vous devez connaître certains principes de fonctionnement du robot.
-- Lorsque le robot rencontre un obstacle (représenté par #) il tourne à droite (sur la même opération). Sinon, sur une zone vide (représentée par.), Il avance tout droit.
+- Lorsque le robot rencontre un obstacle (représenté par #) il tourne à droite (sur la même opération). 
+    Sinon, sur une zone vide (représentée par.), Il avance tout droit.
 - Le robot se déplace initialement vers le haut.
 - Le robot s'arrête après n mouvements.
 - Le coin supérieur gauche représente les coordonnées (0,0)
