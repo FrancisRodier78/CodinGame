@@ -21,6 +21,29 @@ For example: "3" will have the value 3.
 There won't be any cyclic references: a cell that reference itself or a cell that references it, directly or indirectly.
 -->
 
+<--
+Objectif
+On vous donne une feuille de calcul unidimensionnelle. Vous devez résoudre les formules et donner la valeur de toutes ses cellules.
+
+Le contenu de chaque cellule d'entrée est fourni sous la forme d'une opération avec deux opérandes arg1 et arg2.
+
+Il existe 4 types d'opérations :
+VALEUR arg1 arg2 : la valeur de la cellule est arg1, (arg2 n'est pas utilisé et sera "_" pour faciliter l'analyse).
+AJOUTER arg1 arg2 : la valeur de la cellule est arg1 + arg2.
+SUB arg1 arg2 : la valeur de la cellule est arg1 - arg2.
+MULT arg1 arg2 : la valeur de la cellule est arg1 × arg2.
+
+Les arguments peuvent être de deux types :
+• Référence $ref : Si un argument commence par un signe dollar, il est interprété comme une référence et sa valeur est égale à la valeur de la cellule par ce numéro ref, indexée à 0.
+Par exemple, "$0" aura la valeur du résultat de la première cellule.
+Notez qu'une cellule peut référencer une cellule après elle-même !
+
+• Valeur val : si un argument est un nombre pur, sa valeur est val.
+Par exemple : "3" aura la valeur 3.
+
+Il n'y aura pas de références cycliques : une cellule qui se référence elle-même ou une cellule qui la référence, directement ou indirectement.
+-->
+
 <!-- Ma solution -->
 <?php
 fscanf(STDIN, "%d", $N);
@@ -138,8 +161,7 @@ for ($i = 0; $i < $N; $i++) {
 for ($i = (int)fgets(STDIN); $i--;)
     $database[] = [explode(" ", trim(fgets(STDIN))), false];
 
-function compute($index)
-{
+function compute($index) {
     global $database;
     list($line, $result) = $database[$index];
     if ($result !== false) return $result;
