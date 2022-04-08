@@ -5,7 +5,8 @@ Boucles
 
 Résoudre ce puzzle vous fait comprendre le concept de boucle et comment trouver le maximum d'une liste d'entiers.
 
-Ce puzzle est aussi un terrain de jeu pour tester le concept de tri en utilisant jusqu'à 25 langages de programmation. Enfin il vous fait découvrir la programmation fonctionnelle.
+Ce puzzle est aussi un terrain de jeu pour tester le concept de tri en utilisant jusqu'à 25 langages de programmation. 
+Enfin il vous fait découvrir la programmation fonctionnelle.
 
 Tutoriels vidéo
 ▶️ La Descente en Python 3 par Foxxpy
