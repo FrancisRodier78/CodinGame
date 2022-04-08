@@ -1,5 +1,6 @@
 <!--
-Ghost Legs est une sorte de jeu de loterie courant en Asie. Cela commence par un certain nombre de lignes verticales. Entre les lignes, il y a des connecteurs horizontaux aléatoires reliant toutes les lignes dans un diagramme connecté, comme celui ci-dessous.
+Ghost Legs est une sorte de jeu de loterie courant en Asie. Cela commence par un certain nombre de lignes verticales. 
+Entre les lignes, il y a des connecteurs horizontaux aléatoires reliant toutes les lignes dans un diagramme connecté, comme celui ci-dessous.
 
 A B C
 | | |
@@ -9,9 +10,14 @@ A B C
 | | |
 1 2 3
 
-Pour jouer au jeu, un joueur choisit une ligne en haut et la suit vers le bas. Lorsqu'un connecteur horizontal est rencontré, il doit suivre le connecteur pour se tourner vers une autre ligne verticale et continuer vers le bas. Répétez cette opération jusqu'à atteindre le bas du diagramme.
+Pour jouer au jeu, un joueur choisit une ligne en haut et la suit vers le bas. 
+Lorsqu'un connecteur horizontal est rencontré, il doit suivre le connecteur pour se tourner vers une autre ligne verticale et continuer vers le bas. 
+Répétez cette opération jusqu'à atteindre le bas du diagramme.
 
-Dans l'exemple de diagramme, lorsque vous commencez à partir de A, vous vous retrouverez en 2. Partant de B se terminera en 1. Partant de C se terminera en 3. Il est garanti que chaque étiquette supérieure correspondra à une étiquette inférieure unique .
+Dans l'exemple de diagramme, lorsque vous commencez à partir de A, vous vous retrouverez en 2. 
+Partant de B se terminera en 1. 
+Partant de C se terminera en 3. 
+Il est garanti que chaque étiquette supérieure correspondra à une étiquette inférieure unique .
 
 Étant donné un diagramme Ghost Legs, découvrez quelle étiquette supérieure est connectée à quelle étiquette inférieure. Liste toutes les paires connectées.
 -->
