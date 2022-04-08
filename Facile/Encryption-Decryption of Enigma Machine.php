@@ -1,34 +1,29 @@
 <!--
 Objectif
-Pendant la Seconde Guerre mondiale, les Allemands utilisaient un code de cryptage appelé Enigma - qui était essentiellement une machine de cryptage qui cryptait les messages à transmettre. Le code Enigma est resté de nombreuses années sans interruption. Voici comment fonctionne la machine de base:
+Pendant la Seconde Guerre mondiale, les Allemands utilisaient un code de cryptage appelé Enigma - 
+qui était essentiellement une machine de cryptage qui cryptait les messages à transmettre. 
+Le code Enigma est resté de nombreuses années sans interruption. 
 
+Voici comment fonctionne la machine de base:
 Le premier décalage de César est appliqué en utilisant un nombre incrémentiel:
 Si la chaîne est AAA et le numéro de départ est 4, la sortie sera EFG.
-
 A + 4 = E
 A + 4 + 1 = F
 A + 4 + 1 + 1 = G
 
-
 Mappez maintenant EFG au premier ROTOR tel que:
-
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 BDFHJLCPRTXVZNYEIWGAKMUSQO
-
 EFG devient donc JLC. Il est ensuite passé à travers 2 autres rotors pour obtenir la valeur finale.
 
 Si le deuxième ROTOR est AJDKSIRUXBLHWTMCQGZNPYFVOE, nous appliquons à nouveau l'étape de substitution ainsi:
-
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 AJDKSIRUXBLHWTMCQGZNPYFVOE
-
 JLC devient donc BHD.
 
 Si le troisième ROTOR est EKMFLGDQVZNTOWYHXUSPAIBRCJ, alors la substitution finale est:
-
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 EKMFLGDQVZNTOWYHXUSPAIBRCJ
-
 BHD devient donc KQF.
 
 La sortie finale est envoyée via l'émetteur radio.
